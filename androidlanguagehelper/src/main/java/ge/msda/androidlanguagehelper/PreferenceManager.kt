@@ -2,7 +2,6 @@ package ge.msda.androidlanguagehelper
 
 import android.content.Context
 import android.content.SharedPreferences
-import java.lang.Exception
 import java.util.*
 
 /**
@@ -31,11 +30,7 @@ class PreferenceManager private constructor(private val context: Context) {
         )
     }
 
-    fun saveLanguageInPref(language: Language) {
-
-        if (instance == null) {
-            throw Exception("") // ToDo
-        }
+    fun saveLanguageInPref(language: Languages) {
 
         getPreferences()
             .edit()
@@ -45,11 +40,7 @@ class PreferenceManager private constructor(private val context: Context) {
 
     }
 
-    fun getLanguageFromPref(): Language? {
-
-        if (instance == null) {
-            throw Exception("") // ToDo
-        }
+    fun getLanguageFromPref(): Languages? {
 
         val lang: String? = getPreferences()
             .getString(LANGUAGE_CODE, Locale.getDefault().language)
@@ -57,7 +48,7 @@ class PreferenceManager private constructor(private val context: Context) {
         val country: String? = getPreferences()
             .getString(COUNTRY_CODE, Locale.getDefault().country)
 
-        return Language.getLanguage(Locale(lang!!, country!!))
+        return Languages.getLanguage(Locale(lang!!, country!!))
 
     }
 

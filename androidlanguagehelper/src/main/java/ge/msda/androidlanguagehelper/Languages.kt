@@ -6,7 +6,7 @@ import java.util.*
  * Created by ნიკოლოზ კაციტაძე on 1/03/2020
  */
 
-enum class Language(val locale: Locale) {
+enum class Languages(val locale: Locale) {
 
     GEORGIAN(Locale("ka", "GE")),
 
@@ -41,14 +41,15 @@ enum class Language(val locale: Locale) {
             "yi"
         )
 
-        fun getLanguage(locale: Locale): Language? {
-            values()
-                .find {
-                    if (it.locale.language == locale.language && it.locale.country == locale.country)
-                        return it
-                    return null
-                }
+        fun getLanguage(locale: Locale): Languages? {
+
+            values().forEach {
+                if (it.locale.language == locale.language)
+                    return it
+            }
+
             return null
+
         }
 
         fun isInRTL(languageCode: String): Boolean {
